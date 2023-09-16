@@ -61,6 +61,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         textViewYear.setText(String.valueOf(movie.getYear()));
         textViewDescription.setText(movie.getDescription());
         viewModel.loadTrailers(movie.getId());
+        viewModel.loadReviews(movie.getId());
         viewModel.getTrailers().observe(this, new Observer<List<Trailer>>() {
             @Override
             public void onChanged(List<Trailer> trailers) {
@@ -81,7 +82,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 reviewsAdapter.setReviews(reviews);
             }
         });
-        viewModel.loadReviews(movie.getId());
+
         Drawable starOff = ContextCompat.getDrawable(MovieDetailActivity.this, android.R.drawable.star_big_off);
         Drawable starOn = ContextCompat.getDrawable(MovieDetailActivity.this, android.R.drawable.star_big_on);
         viewModel.getFavouriteMovie(movie.getId()).observe(this, new Observer<Movie>() {
